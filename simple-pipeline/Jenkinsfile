@@ -5,13 +5,7 @@ pipeline {
     }
     agent {
       node {
-        agent {
-            node {
-                label 'master'
-            }
-        }
-            }
-        }
+        label 'master'
       }
     }
 
@@ -29,27 +23,16 @@ pipeline {
             }
         }
 
-       stage('stage 2') {
-           steps {
-               sh 'echo hello from stage 2!'
-           }
-       }
-           }
-       }
+        stage('stage 2') {
+            steps {
+                sh 'echo hello from stage 2!'
+            }
+        }
 
         stage('manual approval') {
-
             steps {
-
                 timeout(time: 60, unit: 'MINUTES') {
-
-                    input message: "Ir para o Stage 3?"
-
-                }
-
-            }
-
-        }
+                    input message: "Move to stage 3?"
                 }
             }
         }
